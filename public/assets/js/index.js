@@ -1,8 +1,8 @@
-const $noteTitle = $(".note-title");
-const $noteText = $(".note-textarea");
-const $saveNoteBtn = $(".save-note");
-const $newNoteBtn = $(".new-note");
-const $noteList = $(".list-container .list-group");
+let $noteTitle = $(".note-title");
+let $noteText = $(".note-textarea");
+let $saveNoteBtn = $(".save-note");
+let $newNoteBtn = $(".new-note");
+let $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -51,7 +51,7 @@ const renderActiveNote = () => {
 
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
-  const newNote = {
+  let newNote = {
     title: $noteTitle.val(),
     text: $noteText.val(),
   };
@@ -67,7 +67,7 @@ const handleNoteDelete = function (event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
 
-  const note = $(this).parent(".list-group-item").data();
+  let note = $(this).parent(".list-group-item").data();
 
   if (activeNote.id === note.id) {
     activeNote = {};
@@ -105,13 +105,13 @@ const handleRenderSaveBtn = function () {
 const renderNoteList = (notes) => {
   $noteList.empty();
 
-  const noteListItems = [];
+  let noteListItems = [];
 
   // Returns jquery object for li with given text and delete button
   // unless withDeleteButton argument is provided as false
   const create$li = (text, withDeleteButton = true) => {
-    const $li = $("<li class='list-group-item'>");
-    const $span = $("<span>").text(text);
+    let $li = $("<li class='list-group-item'>");
+    let $span = $("<span>").text(text);
     $li.append($span);
 
     if (withDeleteButton) {
@@ -128,7 +128,7 @@ const renderNoteList = (notes) => {
   }
 
   notes.forEach((note) => {
-    const $li = create$li(note.title).data(note);
+    let $li = create$li(note.title).data(note);
     noteListItems.push($li);
   });
 
