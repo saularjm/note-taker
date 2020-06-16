@@ -44,7 +44,6 @@ app.post("/api/notes", function(req, res) {
 
     // Rewrite DB JSON file with new array and send array to client
     fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
-    console.log("Note saved to db.json. Content: ", newNote);
     res.json(savedNotes);
 })
 
@@ -59,7 +58,6 @@ app.delete("/api/notes/:id", function(req, res) {
 
     // Counter for updated array ID
     let newID = 0;
-    console.log(`Deleting note with ID ${noteID}`);
 
     // Create new array with specified note removed
     savedNotes = savedNotes.filter(currNote => {
